@@ -6,6 +6,7 @@ const taskStore = useTaskStore()
 const title = ref('')
 const description = ref('')
 const dueDate = ref('')
+const successMessage = ref('')
 // Touched form fields
 const titleTouched = ref(false)
 const descriptionTouched = ref(false)
@@ -23,11 +24,13 @@ const addTask = () => {
     completed: false,
   })
 
-  // Clears the form fields after submission
+  // Show success message
+  successMessage.value = 'Task added successfully!'
+  setTimeout(() => (successMessage.value = ''), 3000)
+  // Clear form fields
   title.value = ''
   description.value = ''
   dueDate.value = ''
-  // Resets the touched form fields after submission
   titleTouched.value = false
   descriptionTouched.value = false
   dueDateTouched.value = false
@@ -70,5 +73,7 @@ const addTask = () => {
     >
       Add Task
     </button>
+    <!-- Success Message -->
+    <p v-if="successMessage" class="text-green-500 text-sm mt-3">{{ successMessage }}</p>
   </form>
 </template>
