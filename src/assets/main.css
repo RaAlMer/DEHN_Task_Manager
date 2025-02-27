@@ -112,17 +112,58 @@ tr:hover {
   background-color: #f1f5f9;
 }
 
-/* Responsive: Adjust layout for smaller screens */
+/* Responsive: Stacked layout for smaller screens */
 @media (max-width: 768px) {
-  #app {
+  /* Hide the table header */
+  .responsive-table thead {
+    display: none;
+  }
+
+  /* Convert rows into stacked cards */
+  .responsive-table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
     padding: 1rem;
   }
 
-  .container {
-    gap: 1.5rem;
+  /* Convert cells into stacked blocks */
+  .responsive-table td {
+    display: block;
+    text-align: right;
+    padding: 0.5rem;
+    border: none;
   }
 
-  form {
-    padding: 1rem;
+  /* Add labels for each cell */
+  .responsive-table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+
+  /* Add data-label attributes to cells */
+  .responsive-table td[data-label] {
+    text-align: right;
+  }
+
+  /* Adjust specific columns */
+  .responsive-table td.title,
+  .responsive-table td.description {
+    max-width: 100%;
+  }
+
+  .responsive-table td.status {
+    text-align: right;
+  }
+
+  /* Adjust buttons */
+  .responsive-table td button {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
   }
 }
